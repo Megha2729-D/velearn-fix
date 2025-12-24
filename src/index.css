@@ -161,6 +161,7 @@ img {
 
 .navbar_links {
     background: #ffffff;
+    transition: all .3s ease-out;
 }
 
 .navbar_links.active {
@@ -170,6 +171,7 @@ img {
     left: 0;
     right: 0;
     box-shadow: 0px 2.75px 10px -5px #00000040;
+    transition: all .3s ease-out;
 }
 
 .nav_parent {

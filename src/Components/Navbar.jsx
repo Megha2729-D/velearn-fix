@@ -101,7 +101,7 @@ const Navbar = () => {
 
     return (
         <nav className="v-navbar flex-column w-100 bg-white" ref={navbarRef}>
-            <div className="bg-c1 text-white py-1 d-flex align-items-center overflow-hidden">
+            <div className="bg-c1 text-white py-1 d-flex align-items-center">
                 <div className="w-100">
                     <p className='mb-0 text-center py-1'> New batch offer live. Start your IT journey now.</p>
                 </div>
