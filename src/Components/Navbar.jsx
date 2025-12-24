@@ -11,131 +11,117 @@ const Navbar = () => {
         resources: false
     });
     const [subDropdownOpen, setSubDropdownOpen] = useState({});
-    const navbarRef = useRef(null); // reference to navbar container
+    const navbarRef = useRef(null);
 
-    const handleShowNavbar = () => setShowNavbar(!showNavbar);
+    /* -------------------- HAMBURGER TOGGLE -------------------- */
+    const handleShowNavbar = () => {
+        setShowNavbar(prev => !prev);
+    };
+
+    /* -------------------- SCROLL → ADD ACTIVE CLASS -------------------- */
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 100) {
+        const onScroll = () => {
+            if (window.scrollY > 20) {
                 setActive(true);
             } else {
                 setActive(false);
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener('scroll', onScroll);
         };
     }, []);
 
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         if (window.scrollY >= 100) {
-    //             setActive(true);
-    //         } else {
-    //             setActive(false);
-    //         }
-    //     };
+    /* -------------------- LOCK BODY SCROLL WHEN MENU OPEN -------------------- */
+    useEffect(() => {
+        if (showNavbar) {
+            document.body.style.overflowY = 'hidden';
+            document.documentElement.style.overflowY = 'hidden';
+        } else {
+            document.body.style.overflowY = '';
+            document.documentElement.style.overflowY = '';
+        }
 
-    //     window.addEventListener("scroll", handleScroll);
+        return () => {
+            document.body.style.overflowY = '';
+            document.documentElement.style.overflowY = '';
+        };
+    }, [showNavbar]);
 
-    //     return () => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, []);
-
-    // useEffect(() => {
-    //     const body = document.body;
-    //     const html = document.documentElement;
-
-    //     if (showNavbar) {
-    //         body.classList.add('nav-open');
-    //         html.classList.add('nav-open');
-    //     } else {
-    //         body.classList.remove('nav-open');
-    //         html.classList.remove('nav-open');
-
-    //         setDropdownOpen({
-    //             selfPaced: false,
-    //             liveCourses: false,
-    //             practice: false,
-    //             resources: false
-    //         });
-    //         setSubDropdownOpen({});
-    //     }
-
-    //     return () => {
-    //         body.classList.remove('nav-open');
-    //         html.classList.remove('nav-open');
-    //     };
-    // }, [showNavbar]);
-
+    /* -------------------- DROPDOWNS -------------------- */
     const toggleDropdown = (key, e) => {
         e.stopPropagation();
         setDropdownOpen(prev => {
-            const newState = {};
-            for (let k in prev) {
-                newState[k] = k === key ? !prev[k] : false;
-            }
-            return newState;
+            const state = {};
+            Object.keys(prev).forEach(k => {
+                state[k] = k === key ? !prev[k] : false;
+            });
+            return state;
         });
-        setSubDropdownOpen({}); // close all sub-dropdowns when top dropdown changes
+        setSubDropdownOpen({});
     };
 
     const toggleSubDropdown = (key, e) => {
         e.stopPropagation();
-        setSubDropdownOpen(prev => {
-            const isOpen = prev[key];
-            const newState = {};
-            newState[key] = !isOpen; // only one open at a time
-            return newState;
-        });
+        setSubDropdownOpen(prev => ({
+            [key]: !prev[key]
+        }));
     };
 
     const handleItemClick = () => {
-        // close sub-dropdowns when clicking a link
         setSubDropdownOpen({});
+        setShowNavbar(false);
     };
 
     return (
         <nav className="v-navbar flex-column w-100 bg-white" ref={navbarRef}>
+            {/* TOP BANNER */}
             <div className="bg-c1 text-white py-1 d-flex align-items-center">
                 <div className="w-100">
-                    <p className='mb-0 text-center py-1'> New batch offer live. Start your IT journey now.</p>
+                    <p className="mb-0 text-center py-1">
+                        New batch offer live. Start your IT journey now.
+                    </p>
                 </div>
             </div>
-            <div className={`navbar_links ${active ? "active" : ""}`}>
-                <div className='section_container'>
+
+            {/* MAIN NAV */}
+            <div className={`navbar_links ${active ? 'active' : ''}`}>
+                <div className="section_container">
                     <div className="nav_parent py-1">
 
-                        {/* Hamburger */}
+                        {/* HAMBURGER */}
                         <div className="menu-icon" onClick={handleShowNavbar}>
                             <Hamburger isOpen={showNavbar} />
                         </div>
 
-                        {/* Logo */}
-                        <NavLink to="/">
+                        {/* LOGO */}
+                        <NavLink to="/" onClick={() => setShowNavbar(false)}>
                             <div className="logo">
                                 <div className="logo_img"></div>
                             </div>
                         </NavLink>
 
-                        {/* Nav Links */}
-                        <div className={`nav-elements ${showNavbar ? "active" : ""}`}>
+                        {/* NAV LINKS */}
+                        <div className={`nav-elements ${showNavbar ? 'active' : ''}`}>
                             <ul className="mb-0 p-lg-0">
 
-                                {/* Self-paced Courses */}
-                                <li className={`dropdown ${dropdownOpen.selfPaced ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('selfPaced', e)}>
+                                {/* SELF PACED */}
+                                <li
+                                    className={`dropdown ${dropdownOpen.selfPaced ? 'open' : ''}`}
+                                    onClick={(e) => toggleDropdown('selfPaced', e)}
+                                >
                                     <span className="dropdown-toggle">
                                         Self-paced Courses <i className="bi bi-chevron-down"></i>
                                     </span>
                                     <ul className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
                                         <li className="sub-dropdown">
-                                            <span className="sub-dropdown-toggle"
-                                                onClick={(e) => toggleSubDropdown('group1', e)}>
+                                            <span
+                                                className="sub-dropdown-toggle"
+                                                onClick={(e) => toggleSubDropdown('group1', e)}
+                                            >
                                                 Menu Group 1 <i className="bi bi-chevron-right"></i>
                                             </span>
                                             <ul className={`sub-dropdown-menu ${subDropdownOpen.group1 ? 'open' : ''}`}>
@@ -143,9 +129,12 @@ const Navbar = () => {
                                                 <li><NavLink to="/practice/debugging" onClick={handleItemClick}>Debugging</NavLink></li>
                                             </ul>
                                         </li>
+
                                         <li className="sub-dropdown">
-                                            <span className="sub-dropdown-toggle"
-                                                onClick={(e) => toggleSubDropdown('group2', e)}>
+                                            <span
+                                                className="sub-dropdown-toggle"
+                                                onClick={(e) => toggleSubDropdown('group2', e)}
+                                            >
                                                 Menu Group 2 <i className="bi bi-chevron-right"></i>
                                             </span>
                                             <ul className={`sub-dropdown-menu ${subDropdownOpen.group2 ? 'open' : ''}`}>
@@ -156,9 +145,11 @@ const Navbar = () => {
                                     </ul>
                                 </li>
 
-                                {/* Live Courses */}
-                                <li className={`dropdown ${dropdownOpen.liveCourses ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('liveCourses', e)}>
+                                {/* LIVE COURSES */}
+                                <li
+                                    className={`dropdown ${dropdownOpen.liveCourses ? 'open' : ''}`}
+                                    onClick={(e) => toggleDropdown('liveCourses', e)}
+                                >
                                     <span className="dropdown-toggle">
                                         Live Courses <i className="bi bi-chevron-down"></i>
                                     </span>
@@ -170,9 +161,11 @@ const Navbar = () => {
                                     </ul>
                                 </li>
 
-                                {/* Practice */}
-                                <li className={`dropdown ${dropdownOpen.practice ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('practice', e)}>
+                                {/* PRACTICE */}
+                                <li
+                                    className={`dropdown ${dropdownOpen.practice ? 'open' : ''}`}
+                                    onClick={(e) => toggleDropdown('practice', e)}
+                                >
                                     <span className="dropdown-toggle">
                                         Practice <i className="bi bi-chevron-down"></i>
                                     </span>
@@ -183,9 +176,11 @@ const Navbar = () => {
                                     </ul>
                                 </li>
 
-                                {/* Resources */}
-                                <li className={`dropdown ${dropdownOpen.resources ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('resources', e)}>
+                                {/* RESOURCES */}
+                                <li
+                                    className={`dropdown ${dropdownOpen.resources ? 'open' : ''}`}
+                                    onClick={(e) => toggleDropdown('resources', e)}
+                                >
                                     <span className="dropdown-toggle">
                                         Resources <i className="bi bi-chevron-down"></i>
                                     </span>
@@ -199,7 +194,7 @@ const Navbar = () => {
                             </ul>
                         </div>
 
-                        {/* Right Section */}
+                        {/* RIGHT ICONS */}
                         <div className="d-flex gap-4 right_nav_icons">
                             <div className="d-lg-flex d-none align-items-center">
                                 <div className="search_parent position-relative">
@@ -215,20 +210,15 @@ const Navbar = () => {
                                     <Link to="/login" className="btn_login">Login</Link>
                                 </span>
                                 <span className="d-none d-lg-block">|</span>
-                                <span>
-                                    <Link to="/signup" className="btn_signup">Sign Up</Link>
-                                </span>
+                                <span> <Link to="/signup" className="btn_signup">Sign Up</Link> </span>
                             </div>
                             <div className='d-flex d-lg-none nav_mbl_icons'>
                                 <div className='pe-3 d-flex align-items-center'>
                                     <i className="bi bi-search"></i>
                                 </div>
-                                <span>
-                                    <Link to="/login" className="btn_login">Login</Link>
-                                </span>
+                                <span> <Link to="/login" className="btn_login">Login</Link> </span>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -236,17 +226,16 @@ const Navbar = () => {
     );
 };
 
+/* -------------------- HAMBURGER -------------------- */
 const Hamburger = ({ isOpen }) => (
     <>
-        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24" viewBox="0 0 52 24" className={isOpen ? "d-none" : "d-block"}>
-            <g transform="translate(-294 -47)">
-                <rect width="30" height="2" rx="2" transform="translate(304 47)" fill="#574c4c" />
-                <rect width="40" height="2" rx="2" transform="translate(294 57)" fill="#574c4c" />
-                <rect width="30" height="2" rx="2" transform="translate(304 67)" fill="#574c4c" />
-            </g>
+        <svg width="52" height="24" viewBox="0 0 52 24" className={isOpen ? 'd-none' : 'd-block'}>
+            <rect width="30" height="2" rx="2" x="10" y="2" fill="#574c4c" />
+            <rect width="40" height="2" rx="2" x="1" y="11" fill="#574c4c" />
+            <rect width="30" height="2" rx="2" x="10" y="20" fill="#574c4c" />
         </svg>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className={isOpen ? "d-block" : "d-none"}>
+        <svg width="24" height="24" viewBox="0 0 24 24" className={isOpen ? 'd-block' : 'd-none'}>
             <line x1="0" y1="0" x2="24" y2="24" stroke="#574c4c" strokeWidth="2" />
             <line x1="24" y1="0" x2="0" y2="24" stroke="#574c4c" strokeWidth="2" />
         </svg>
