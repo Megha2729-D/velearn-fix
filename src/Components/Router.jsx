@@ -103,7 +103,7 @@ const AppRouter = () => {
                     <Preloader />
                 ) : (
                     <div className="first_sec">
-                        {/* <Navbar /> */}
+                        <Navbar />
                         <AnimatedRoutes />
                         <Footer />
                     </div>
