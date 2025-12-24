@@ -14,6 +14,21 @@ const Navbar = () => {
     const navbarRef = useRef(null); // reference to navbar container
 
     const handleShowNavbar = () => setShowNavbar(!showNavbar);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setActive(true);
+            } else {
+                setActive(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     // useEffect(() => {
     //     const handleScroll = () => {
