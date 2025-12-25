@@ -46,10 +46,11 @@ const Navbar = () => {
     return (
         <nav className={`v-navbar ${scrolled ? 'scrolled' : ''}`}>
             {/* TOP BANNER */}
-            <div className="top-banner">
-                <p>New batch offer live. Start your IT journey now.</p>
+            <div className="bg-c1 text-white py-1 d-flex align-items-center overflow-hidden">
+                <div className="w-100">
+                    <p className='mb-0 text-center py-1'> New batch offer live. Start your IT journey now.</p>
+                </div>
             </div>
-
             {/* MAIN NAV */}
             <div className="navbar_links">
                 <div className="section_container">
