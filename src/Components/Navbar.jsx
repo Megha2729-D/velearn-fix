@@ -68,7 +68,7 @@ const Navbar = () => {
 
                         {/* NAV LINKS */}
                         <div className={`nav-elements ${showNavbar ? 'active' : ''}`}>
-                            <ul className="mb-0 p-lg-0">
+                            <ul>
                                 <li onClick={() => toggleDropdown('self')}>
                                     Self-paced Courses
                                 </li>
@@ -113,6 +113,7 @@ const Navbar = () => {
                                 </span>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
