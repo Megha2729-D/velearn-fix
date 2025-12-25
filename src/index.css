@@ -160,18 +160,27 @@ img {
 }
 
 .navbar_links {
+    width: 100%;
     background: #ffffff;
-    transition: all .3s ease-out;
 }
 
 .navbar_links.active {
     position: fixed;
+    width: 100%;
     z-index: 99;
     top: 0;
-    left: 0;
-    right: 0;
     box-shadow: 0px 2.75px 10px -5px #00000040;
-    transition: all .3s ease-out;
+    animation: stuckMoveDown .6s;
+}
+
+@keyframes stuckMoveDown {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .nav_parent {
@@ -2762,7 +2771,6 @@ section {
         align-items: center;
     }
 
-
     .nav-elements {
         padding: 0;
         position: absolute;
@@ -2919,10 +2927,6 @@ section {
     .nav-elements .dropdown-menu a {
         padding: 10px 0;
         display: block;
-    }
-
-    .navbar_links.active {
-        box-shadow: 1px 1px 8px -2px #0000004d;
     }
 
     .btn_login,
