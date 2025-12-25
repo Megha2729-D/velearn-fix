@@ -170,7 +170,7 @@ img {
     background: #ffffff;
 }
 
-.navbar_links.active {
+.navbar_links.is-fixed {
     position: fixed;
     width: 100%;
     z-index: 99;

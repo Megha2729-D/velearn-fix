@@ -51,7 +51,7 @@ const Navbar = () => {
             </div>
 
             {/* MAIN NAV */}
-            <div className="navbar_links">
+            <div className={`navbar_links ${scrolled ? 'is-fixed' : ''}`}>
                 <div className="section_container">
                     <div className="nav_parent">
 
