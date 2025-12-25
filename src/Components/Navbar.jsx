@@ -120,22 +120,13 @@ const Navbar = () => {
     );
 };
 
-
+/* -------------------- HAMBURGER -------------------- */
 const Hamburger = ({ isOpen }) => (
-    <>
-        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24" viewBox="0 0 52 24" className={isOpen ? "d-none" : "d-block"}>
-            <g transform="translate(-294 -47)">
-                <rect width="30" height="2" rx="2" transform="translate(304 47)" fill="#574c4c" />
-                <rect width="40" height="2" rx="2" transform="translate(294 57)" fill="#574c4c" />
-                <rect width="30" height="2" rx="2" transform="translate(304 67)" fill="#574c4c" />
-            </g>
-        </svg>
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" className={isOpen ? "d-block" : "d-none"}>
-            <line x1="0" y1="0" x2="24" y2="24" stroke="#574c4c" strokeWidth="2" />
-            <line x1="24" y1="0" x2="0" y2="24" stroke="#574c4c" strokeWidth="2" />
-        </svg>
-    </>
+    <div className={`hamburger ${isOpen ? 'open' : ''}`}>
+        <span />
+        <span />
+        <span />
+    </div>
 );
 
 export default Navbar;
