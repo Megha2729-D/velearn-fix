@@ -14,9 +14,9 @@ const Navbar = () => {
     const navbarRef = useRef(null);
 
     // /* -------------------- HAMBURGER TOGGLE -------------------- */
-    // const handleShowNavbar = () => {
-    //     setShowNavbar(prev => !prev);
-    // };
+    const handleShowNavbar = () => {
+        setShowNavbar(prev => !prev);
+    };
 
     // /* -------------------- SCROLL → ADD ACTIVE CLASS -------------------- */
     // useEffect(() => {
@@ -93,8 +93,8 @@ const Navbar = () => {
                     <div className="nav_parent py-1">
 
                         {/* HAMBURGER */}
-                        {/* <div className="menu-icon" onClick={handleShowNavbar}> */}
-                        <div className="menu-icon">
+                        <div className="menu-icon" onClick={handleShowNavbar}>
+                        {/* <div className="menu-icon"> */}
                             <Hamburger isOpen={showNavbar} />
                         </div>
 
