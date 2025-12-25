@@ -68,7 +68,7 @@ const Navbar = () => {
 
                         {/* NAV LINKS */}
                         <div className={`nav-elements ${showNavbar ? 'active' : ''}`}>
-                            <ul>
+                            <ul className="mb-0 p-lg-0">
                                 <li onClick={() => toggleDropdown('self')}>
                                     Self-paced Courses
                                 </li>
@@ -84,12 +84,35 @@ const Navbar = () => {
                             </ul>
                         </div>
 
-                        {/* RIGHT */}
-                        <div className="right_nav_icons">
-                            <Link to="/login" className="btn_login">Login</Link>
-                            <Link to="/signup" className="btn_signup">Sign Up</Link>
-                        </div>
+                        {/* Right Section */}
+                        <div className="d-flex gap-4 right_nav_icons">
+                            <div className="d-lg-flex d-none align-items-center">
+                                <div className="search_parent position-relative">
+                                    <div className="d-flex align-items-center">
+                                        <i className="bi bi-search"></i>
+                                        <input type="search" placeholder="Search" />
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div className="d-lg-flex d-none gap-2 text-white">
+                                <span className="d-none d-lg-block">
+                                    <Link to="/login" className="btn_login">Login</Link>
+                                </span>
+                                <span className="d-none d-lg-block">|</span>
+                                <span>
+                                    <Link to="/signup" className="btn_signup">Sign Up</Link>
+                                </span>
+                            </div>
+                            <div className='d-flex d-lg-none nav_mbl_icons'>
+                                <div className='pe-3 d-flex align-items-center'>
+                                    <i className="bi bi-search"></i>
+                                </div>
+                                <span>
+                                    <Link to="/login" className="btn_login">Login</Link>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,13 +120,22 @@ const Navbar = () => {
     );
 };
 
-/* -------------------- HAMBURGER -------------------- */
+
 const Hamburger = ({ isOpen }) => (
-    <div className={`hamburger ${isOpen ? 'open' : ''}`}>
-        <span />
-        <span />
-        <span />
-    </div>
+    <>
+        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="24" viewBox="0 0 52 24" className={isOpen ? "d-none" : "d-block"}>
+            <g transform="translate(-294 -47)">
+                <rect width="30" height="2" rx="2" transform="translate(304 47)" fill="#574c4c" />
+                <rect width="40" height="2" rx="2" transform="translate(294 57)" fill="#574c4c" />
+                <rect width="30" height="2" rx="2" transform="translate(304 67)" fill="#574c4c" />
+            </g>
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" className={isOpen ? "d-block" : "d-none"}>
+            <line x1="0" y1="0" x2="24" y2="24" stroke="#574c4c" strokeWidth="2" />
+            <line x1="24" y1="0" x2="0" y2="24" stroke="#574c4c" strokeWidth="2" />
+        </svg>
+    </>
 );
 
 export default Navbar;
