@@ -42,10 +42,7 @@ const Navbar = () => {
         setDropdownOpen({});
         setSubDropdownOpen({});
     };
-    // const handleItemClick = () => {
-    //     // close sub-dropdowns when clicking a link
-    //     setSubDropdownOpen({});
-    // };
+
     return (
         <nav className={`v-navbar ${scrolled ? 'scrolled' : ''}`}>
             {/* TOP BANNER */}
@@ -74,82 +71,23 @@ const Navbar = () => {
 
                         {/* NAV LINKS */}
                         <div className={`nav-elements ${showNavbar ? 'active' : ''}`}>
-                            <ul className="mb-0 p-lg-0">
-
-                                {/* Self-paced Courses */}
-                                <li className={`dropdown ${dropdownOpen.selfPaced ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('selfPaced', e)}>
-                                    <span className="dropdown-toggle">
-                                        Self-paced Courses <i className="bi bi-chevron-down"></i>
-                                    </span>
-                                    {/* <ul className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                                        <li className="sub-dropdown">
-                                            <span className="sub-dropdown-toggle"
-                                                onClick={(e) => toggleSubDropdown('group1', e)}>
-                                                Menu Group 1 <i className="bi bi-chevron-right"></i>
-                                            </span>
-                                            <ul className={`sub-dropdown-menu ${subDropdownOpen.group1 ? 'open' : ''}`}>
-                                                <li><NavLink to="/practice/ide" onClick={handleItemClick}>Online IDE</NavLink></li>
-                                                <li><NavLink to="/practice/debugging" onClick={handleItemClick}>Debugging</NavLink></li>
-                                            </ul>
-                                        </li>
-                                        <li className="sub-dropdown">
-                                            <span className="sub-dropdown-toggle"
-                                                onClick={(e) => toggleSubDropdown('group2', e)}>
-                                                Menu Group 2 <i className="bi bi-chevron-right"></i>
-                                            </span>
-                                            <ul className={`sub-dropdown-menu ${subDropdownOpen.group2 ? 'open' : ''}`}>
-                                                <li><NavLink to="/practice/challenges" onClick={handleItemClick}>Challenges</NavLink></li>
-                                                <li><NavLink to="/practice/projects" onClick={handleItemClick}>Projects</NavLink></li>
-                                            </ul>
-                                        </li>
-                                    </ul> */}
+                            <ul>
+                                <li onClick={() => toggleDropdown('self')}>
+                                    Self-paced Courses
                                 </li>
-
-                                {/* Live Courses */}
-                                <li className={`dropdown ${dropdownOpen.liveCourses ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('liveCourses', e)}>
-                                    <span className="dropdown-toggle">
-                                        Live Courses <i className="bi bi-chevron-down"></i>
-                                    </span>
-                                    {/* <ul className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                                        <li><NavLink to="/" onClick={handleItemClick}>UI UX Design</NavLink></li>
-                                        <li><NavLink to="/" onClick={handleItemClick}>Data Science</NavLink></li>
-                                        <li><NavLink to="/" onClick={handleItemClick}>Full Stack Web Development</NavLink></li>
-                                        <li><NavLink to="/" onClick={handleItemClick}>Python Full Stack</NavLink></li>
-                                    </ul> */}
+                                <li onClick={() => toggleDropdown('live')}>
+                                    Live Courses
                                 </li>
-
-                                {/* Practice */}
-                                <li className={`dropdown ${dropdownOpen.practice ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('practice', e)}>
-                                    <span className="dropdown-toggle">
-                                        Practice <i className="bi bi-chevron-down"></i>
-                                    </span>
-                                    {/* <ul className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                                        <li><NavLink to="/practice/ide" onClick={handleItemClick}>Online IDE</NavLink></li>
-                                        <li><NavLink to="/practice/debugging" onClick={handleItemClick}>Debugging</NavLink></li>
-                                        <li><NavLink to="/practice/challenges" onClick={handleItemClick}>Challenges</NavLink></li>
-                                    </ul> */}
+                                <li onClick={() => toggleDropdown('practice')}>
+                                    Practice
                                 </li>
-
-                                {/* Resources */}
-                                <li className={`dropdown ${dropdownOpen.resources ? "open" : ""}`}
-                                    onClick={(e) => toggleDropdown('resources', e)}>
-                                    <span className="dropdown-toggle">
-                                        Resources <i className="bi bi-chevron-down"></i>
-                                    </span>
-                                    {/* <ul className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                                        <li><NavLink to="/resources/blogs" onClick={handleItemClick}>Blogs</NavLink></li>
-                                        <li><NavLink to="/resources/docs" onClick={handleItemClick}>Docs</NavLink></li>
-                                        <li><NavLink to="/resources/tools" onClick={handleItemClick}>Tools</NavLink></li>
-                                    </ul> */}
+                                <li onClick={() => toggleDropdown('resources')}>
+                                    Resources
                                 </li>
-
                             </ul>
                         </div>
 
-                        {/* RIGHT */}
+                        {/* Right Section */}
                         <div className="d-flex gap-4 right_nav_icons">
                             <div className="d-lg-flex d-none align-items-center">
                                 <div className="search_parent position-relative">
@@ -178,7 +116,6 @@ const Navbar = () => {
                                 </span>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
