@@ -84,10 +84,42 @@ const Navbar = () => {
                         </div>
 
                         {/* RIGHT */}
-                        <div className="right_nav_icons">
-                            <Link to="/login" className="btn_login">Login</Link>
-                            <Link to="/signup" className="btn_signup">Sign Up</Link>
+                        <div className="d-flex gap-4 right_nav_icons">
+
+                            {/* DESKTOP SEARCH */}
+                            <div className="d-lg-flex d-none align-items-center">
+                                <div className="search_parent position-relative">
+                                    <div className="d-flex align-items-center">
+                                        <i className="bi bi-search"></i>
+                                        <input
+                                            type="search"
+                                            placeholder="Search"
+                                            className="nav_search_input"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* DESKTOP LOGIN / SIGNUP */}
+                            <div className="d-lg-flex d-none gap-2 align-items-center">
+                                <Link to="/login" className="btn_login">Login</Link>
+                                <span className="nav_divider">|</span>
+                                <Link to="/signup" className="btn_signup">Sign Up</Link>
+                            </div>
+
+                            {/* MOBILE ICONS */}
+                            <div className="d-flex d-lg-none align-items-center nav_mbl_icons">
+                                <button className="mbl_search_btn">
+                                    <i className="bi bi-search"></i>
+                                </button>
+
+                                <Link to="/login" className="btn_login ms-2">
+                                    Login
+                                </Link>
+                            </div>
+
                         </div>
+
 
                     </div>
                 </div>
