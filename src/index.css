@@ -2740,10 +2740,6 @@ section {
         font-size: 14px;
     }
 
-    .navbar_links.active .nav-elements {
-        top: 68px;
-    }
-
     .v-banner .carousel-item img {
         height: 370px;
     }
@@ -2908,10 +2904,6 @@ section {
         object-fit: contain;
     }
 
-    .navbar_links.active .nav-elements {
-        top: 70px;
-    }
-
 }
 
 /* bootstrap */
@@ -3010,7 +3002,7 @@ section {
     }
 
     .nav_mbl_icons i {
-        font-size: 17px;
+        font-size: 18px;
         color: var(--c1);
     }
 
