@@ -13,43 +13,43 @@ const Navbar = () => {
     const [subDropdownOpen, setSubDropdownOpen] = useState({});
     const navbarRef = useRef(null);
 
-    /* -------------------- HAMBURGER TOGGLE -------------------- */
-    const handleShowNavbar = () => {
-        setShowNavbar(prev => !prev);
-    };
+    // /* -------------------- HAMBURGER TOGGLE -------------------- */
+    // const handleShowNavbar = () => {
+    //     setShowNavbar(prev => !prev);
+    // };
 
-    /* -------------------- SCROLL → ADD ACTIVE CLASS -------------------- */
-    useEffect(() => {
-        const onScroll = () => {
-            if (window.scrollY > 20) {
-                setActive(true);
-            } else {
-                setActive(false);
-            }
-        };
+    // /* -------------------- SCROLL → ADD ACTIVE CLASS -------------------- */
+    // useEffect(() => {
+    //     const onScroll = () => {
+    //         if (window.scrollY > 20) {
+    //             setActive(true);
+    //         } else {
+    //             setActive(false);
+    //         }
+    //     };
 
-        window.addEventListener('scroll', onScroll, { passive: true });
+    //     window.addEventListener('scroll', onScroll, { passive: true });
 
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener('scroll', onScroll);
+    //     };
+    // }, []);
 
-    /* -------------------- LOCK BODY SCROLL WHEN MENU OPEN -------------------- */
-    useEffect(() => {
-        if (showNavbar) {
-            document.body.style.overflowY = 'hidden';
-            document.documentElement.style.overflowY = 'hidden';
-        } else {
-            document.body.style.overflowY = '';
-            document.documentElement.style.overflowY = '';
-        }
+    // /* -------------------- LOCK BODY SCROLL WHEN MENU OPEN -------------------- */
+    // useEffect(() => {
+    //     if (showNavbar) {
+    //         document.body.style.overflowY = 'hidden';
+    //         document.documentElement.style.overflowY = 'hidden';
+    //     } else {
+    //         document.body.style.overflowY = '';
+    //         document.documentElement.style.overflowY = '';
+    //     }
 
-        return () => {
-            document.body.style.overflowY = '';
-            document.documentElement.style.overflowY = '';
-        };
-    }, [showNavbar]);
+    //     return () => {
+    //         document.body.style.overflowY = '';
+    //         document.documentElement.style.overflowY = '';
+    //     };
+    // }, [showNavbar]);
 
     /* -------------------- DROPDOWNS -------------------- */
     const toggleDropdown = (key, e) => {
@@ -93,7 +93,8 @@ const Navbar = () => {
                     <div className="nav_parent py-1">
 
                         {/* HAMBURGER */}
-                        <div className="menu-icon" onClick={handleShowNavbar}>
+                        {/* <div className="menu-icon" onClick={handleShowNavbar}> */}
+                        <div className="menu-icon">
                             <Hamburger isOpen={showNavbar} />
                         </div>
 
