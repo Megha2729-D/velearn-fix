@@ -47,7 +47,7 @@ const Navbar = () => {
         <nav className={`v-navbar ${scrolled ? 'scrolled' : ''}`}>
             {/* TOP BANNER */}
             <div className="top-banner">
-                <p>New batch offer live. Start your IT journey now.</p>
+                <p className='mb-0 py-1'>New batch offer live. Start your IT journey now.</p>
             </div>
 
             {/* MAIN NAV */}
@@ -103,17 +103,14 @@ const Navbar = () => {
                             {/* DESKTOP LOGIN / SIGNUP */}
                             <div className="d-lg-flex d-none gap-2 align-items-center">
                                 <Link to="/login" className="btn_login">Login</Link>
-                                <span className="nav_divider">|</span>
                                 <Link to="/signup" className="btn_signup">Sign Up</Link>
                             </div>
 
                             {/* MOBILE ICONS */}
                             <div className="d-flex d-lg-none align-items-center nav_mbl_icons">
-                                <button className="mbl_search_btn">
-                                    <i className="bi bi-search"></i>
-                                </button>
+                                <i className="bi bi-search pe-3"></i>
 
-                                <Link to="/login" className="btn_login ms-2">
+                                <Link to="/login" className="btn_login">
                                     Login
                                 </Link>
                             </div>

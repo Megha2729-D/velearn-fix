@@ -327,6 +327,12 @@ img {
     width: 100%;
 }
 
+.top-banner {
+    background-color: var(--c1);
+    color: #ffffff;
+    text-align: center;
+}
+
 .nav-elements ul {
     width: fit-content;
     margin: auto;
