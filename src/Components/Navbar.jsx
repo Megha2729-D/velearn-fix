@@ -61,8 +61,10 @@ const Navbar = () => {
                         </div>
 
                         {/* LOGO */}
-                        <NavLink to="/" onClick={closeMenu} className="logo">
-                            <div className="logo_img" />
+                        <NavLink to="/" onClick={closeMenu}>
+                            <div className="logo">
+                                <div className="logo_img" />
+                            </div>
                         </NavLink>
 
                         {/* NAV LINKS */}
