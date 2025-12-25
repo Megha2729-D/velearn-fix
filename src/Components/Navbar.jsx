@@ -108,9 +108,11 @@ const Navbar = () => {
 
                             {/* MOBILE ICONS */}
                             <div className="d-flex d-lg-none align-items-center nav_mbl_icons">
-                                <i className="bi bi-search pe-3"></i>
+                                <button className="mbl_search_btn">
+                                    <i className="bi bi-search"></i>
+                                </button>
 
-                                <Link to="/login" className="btn_login">
+                                <Link to="/login" className="btn_login ms-2">
                                     Login
                                 </Link>
                             </div>
