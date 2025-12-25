@@ -84,34 +84,10 @@ const Navbar = () => {
                             </ul>
                         </div>
 
-                        {/* Right Section */}
-                        <div className="d-flex gap-4 right_nav_icons">
-                            <div className="d-lg-flex d-none align-items-center">
-                                <div className="search_parent position-relative">
-                                    <div className="d-flex align-items-center">
-                                        <i className="bi bi-search"></i>
-                                        <input type="search" placeholder="Search" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="d-lg-flex d-none gap-2 text-white">
-                                <span className="d-none d-lg-block">
-                                    <Link to="/login" className="btn_login">Login</Link>
-                                </span>
-                                <span className="d-none d-lg-block">|</span>
-                                <span>
-                                    <Link to="/signup" className="btn_signup">Sign Up</Link>
-                                </span>
-                            </div>
-                            <div className='d-flex d-lg-none nav_mbl_icons'>
-                                <div className='pe-3 d-flex align-items-center'>
-                                    <i className="bi bi-search"></i>
-                                </div>
-                                <span>
-                                    <Link to="/login" className="btn_login">Login</Link>
-                                </span>
-                            </div>
+                        {/* RIGHT */}
+                        <div className="right_nav_icons">
+                            <Link to="/login" className="btn_login">Login</Link>
+                            <Link to="/signup" className="btn_signup">Sign Up</Link>
                         </div>
 
                     </div>
