@@ -95,7 +95,7 @@ img {
 }
 
 /* Logo as background image */
-.logo-bg {
+/* .logo-bg {
     width: 60px;
     height: 60px;
     background-image: url("../public/assets/images/logo-icon.png");
@@ -103,7 +103,7 @@ img {
     background-position: center;
     background-size: contain;
     z-index: 2;
-}
+} */
 
 /* Circular spinner */
 .spinner {
@@ -116,12 +116,17 @@ img {
     animation: spin 1s linear infinite;
 }
 
+.loader img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
 }
-
 
 .signUpBut {
     color: #ffffff;
@@ -2906,7 +2911,7 @@ section {
     }
 
     .logo img {
-        width: 150px !important;
+        width: 85% !important;
         object-fit: contain;
     }
 
@@ -3013,7 +3018,7 @@ section {
     }
 
     .logo img {
-        width: 130px;
+        width: 85%;
     }
 
     .btn-c1 {
@@ -3054,7 +3059,7 @@ section {
 
 @media screen and (max-width: 490px) {
     .logo {
-        width: 200px;
+        width: 100%;
         display: flex;
         justify-content: center;
     }
