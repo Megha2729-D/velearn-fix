@@ -704,7 +704,7 @@ class HomePage extends Component {
                         </div>
 
                         {/* Tabs */}
-                        <div className="d-flex justify-content-center gap-3 flex-wrap mt-4">
+                        <div className="mt-4 recorded_tab_parent">
                             {Object.keys(this.recordedCourseTabs).map((key) => (
                                 <button
                                     key={key}
