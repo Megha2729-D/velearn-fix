@@ -12,7 +12,7 @@ import Preloader from "./Preloader";
 
 import RecordedCourse from "./RecordedCourse";
 import LiveCourses from "./LiveCourses";
-
+import CourseDetails from "./CourseDetails";
 /* ---------- Page Transition Wrapper ---------- */
 const PageTransitionWrapper = ({ children, pathname }) => {
     const isHome = pathname === "/";
@@ -74,6 +74,14 @@ const AnimatedRoutes = () => {
                     element={
                         <PageTransitionWrapper pathname={location.pathname}>
                             <LiveCourses />
+                        </PageTransitionWrapper>
+                    }
+                />
+                <Route
+                    path="/course-details"
+                    element={
+                        <PageTransitionWrapper pathname={location.pathname}>
+                            <CourseDetails />
                         </PageTransitionWrapper>
                     }
                 />

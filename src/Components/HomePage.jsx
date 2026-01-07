@@ -637,7 +637,7 @@ class HomePage extends Component {
                                 </div>
                             ))}
                             <div className="col-12 d-flex justify-content-center more_butt_parent">
-                                <NavLink to="/">
+                                <NavLink to="/live-course">
                                     <div className="d-flex more_butt">
                                         <div className="butt">Show More</div>
                                         <div className="icon_redirect">
@@ -731,7 +731,7 @@ class HomePage extends Component {
                                 breakpoints={{
                                     0: { slidesPerView: 1 },
                                     768: { slidesPerView: 2 },
-                                    1024: { slidesPerView: 3 },
+                                    1024: { slidesPerView: 4 },
                                     1300: { slidesPerView: 4 },
                                 }}
                             >
@@ -804,7 +804,7 @@ class HomePage extends Component {
                         </div>
                     </div>
                 </section>
-                <section className="from_start_sec">
+                {/* <section className="from_start_sec">
                     <div className="container">
                         <h3 className="section_base_heading text-center">
                             From Start To <span className="text-c2">Success</span>
@@ -812,7 +812,6 @@ class HomePage extends Component {
 
                         <div className="journey_wrap position-relative">
 
-                            {/* Center faded icon / graphic */}
                             <div className="journey_bg_icon"></div>
                             <div className="dotted_lines">
                                 <div className="position-relative d-flex justify-content-center">
@@ -822,35 +821,30 @@ class HomePage extends Component {
                             <div className="rocket_wrap">
                                 <img src={`${process.env.PUBLIC_URL}assets/images/journey/rocket.png`} className="rocket_img" alt="" />
                             </div>
-                            {/* Item 1 */}
                             <div className="journey_item item_1">
                                 <img src={`${process.env.PUBLIC_URL}assets/images/journey/step-1.png`} alt="" />
                                 <h6>Career Guidance With Free Demo</h6>
                                 <p>Get expert advice and choose the right IT career path.</p>
                             </div>
 
-                            {/* Item 2 */}
                             <div className="journey_item item_2">
                                 <h6>Course Commencement</h6>
                                 <p>Start live online classes with structured, beginner-friendly lessons.</p>
                                 <img src={`${process.env.PUBLIC_URL}assets/images/journey/step-2.png`} alt="" />
                             </div>
 
-                            {/* Item 3 */}
                             <div className="journey_item item_3">
                                 <img src={`${process.env.PUBLIC_URL}assets/images/journey/step-3.png`} alt="" />
                                 <h6>Periodical Activity & Assessments</h6>
                                 <p>Practice regularly with tasks and quick assessments.</p>
                             </div>
 
-                            {/* Item 4 */}
                             <div className="journey_item item_4">
                                 <h6>Real Time Projects Submission</h6>
                                 <p>Apply your skills through industry-level practical projects.</p>
                                 <img src={`${process.env.PUBLIC_URL}assets/images/journey/step-4.png`} alt="" />
                             </div>
 
-                            {/* Item 5 */}
                             <div className="journey_item item_5">
                                 <img src={`${process.env.PUBLIC_URL}assets/images/journey/step-5.png`} alt="" />
                                 <h6>Job Placement Assistance</h6>
@@ -858,7 +852,7 @@ class HomePage extends Component {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <section>
                     <div className="pb-5 pt-lg-5 logo_swiper">
                         <div className="section_container p-xl text-center mt-5">
@@ -1045,6 +1039,87 @@ class HomePage extends Component {
                 <section className="py-5">
                     <div className="section_container py-5 p-xl d-flex justify-content-center overflow-hidden">
                         <div className="row justify-content-center w-100">
+                            {/* <div className="col-lg-10 col-12">
+                                <div className="row">
+                                    <div className="col-7">
+                                        <div className="row px-0 mx-0">
+                                            <div className="col-12">
+                                                <div className="count_clr count_clr1">
+                                                    <div className="row">
+                                                        <div className="col-6 d-flex flex-column justify-content-center align-items-center">
+                                                            <h6>Active Learners</h6>
+                                                            <h2>1000+</h2>
+                                                        </div>
+                                                        <div className="col-6 d-flex flex-column justify-content-center align-items-center">
+                                                            <img src={`${process.env.PUBLIC_URL}/assets/images/bento-vector-1.png`} alt="" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-6 count_top_height">
+                                                <div className="count_clr count_clr2 d-flex justify-content-center align-items-center">
+                                                    <div className="d-flex flex-column justify-content-center align-items-center">
+                                                        <h6>Video Lessons</h6>
+                                                        <h2>2000+</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-6 count_top_height">
+                                                <div className="count_clr count_clr3">
+                                                    <div className="d-flex justify-content-center gap-2 align-items-center">
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                    </div>
+                                                    <div className="d-flex justify-content-center gap-3 align-items-center">
+                                                        <h6>Rating</h6>
+                                                        <h2>4.7</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-5 count_top_sm_height px-4">
+                                        <div className="col-12 h-100">
+                                            <div className="count_clr count_clr4">
+                                                <div className="d-flex flex-column justify-content-center align-items-center">
+                                                    <h6 className="text-center">Minutes of Video Watched</h6>
+                                                    <h2>20000+</h2>
+                                                </div>
+                                                <div className="d-flex justify-content-center align-items-center">
+                                                    <img src={`${process.env.PUBLIC_URL}/assets/images/bento-vector-3-2.png`} className="image-1" alt="" />
+                                                    <img src={`${process.env.PUBLIC_URL}/assets/images/bento-vector-3-1.png`} className="image-2" alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-5 count_top_height px-3">
+                                        <div className="count_clr count_clr5 d-flex justify-content-center align-items-center">
+                                            <div className="d-flex flex-column justify-content-center align-items-center">
+                                                <h6>Doubts Cleared</h6>
+                                                <h2>4500+</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-7 count_top_height px-3">
+                                        <div className="count_clr count_clr6">
+                                            <div className="row">
+                                                <div className="col-8 ">
+                                                    <div className="px-lg-5 ps-5 d-flex flex-column justify-content-center align-items-lg-start align-items-center">
+                                                        <h6>Questions Practiced</h6>
+                                                        <h2>5000+</h2>
+                                                    </div>
+                                                </div>
+                                                <div className="col-4 d-flex justify-content-center align-items-center">
+                                                    <img src={`${process.env.PUBLIC_URL}/assets/images/bento-vector-2.png`} alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> */}
                             <div className="col-lg-10">
                                 <div className="row">
                                     <div className="col-lg-7">

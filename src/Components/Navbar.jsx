@@ -1,12 +1,42 @@
-import { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [showNavbar, setShowNavbar] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState({});
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [subDropdownOpen, setSubDropdownOpen] = useState({});
+    const [user, setUser] = useState(null);
 
+    const navigate = useNavigate();
+    const dropdownRef = useRef(null);
+
+    /* ------------------ GET USER ------------------ */
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
+    /* ------------------ LOGOUT ------------------ */
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        setUser(null);
+        setDropdownOpen(false);
+        navigate("/login");
+    };
+
+    /* ------------------ CLOSE ON OUTSIDE CLICK ------------------ */
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
     /* -------------------- SCROLL SHADOW ONLY -------------------- */
     useEffect(() => {
         const onScroll = () => {
@@ -186,21 +216,23 @@ const Navbar = () => {
                                     </span>
 
                                     <ul className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                                        <li><NavLink to="/resources/blogs" onClick={handleItemClick}>Blogs</NavLink></li>
-                                        <li><NavLink to="/resources/docs" onClick={handleItemClick}>Docs</NavLink></li>
-                                        <li><NavLink to="/resources/tools" onClick={handleItemClick}>Tools</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>Success stories</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>Webinars</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>E-books</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>News letters</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>Referral</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>Blog</NavLink></li>
+                                        <li><NavLink to="/" onClick={handleItemClick}>Become an affiliate</NavLink></li>
                                     </ul>
                                 </li>
-
                             </ul>
-
                         </div>
 
                         {/* RIGHT */}
-                        <div className="d-flex gap-4 right_nav_icons">
+                        <div className="d-flex right_nav_icons">
 
                             {/* DESKTOP SEARCH */}
-                            <div className="d-lg-flex d-none align-items-center">
+                            <div className="d-lg-flex d-none align-items-center me-3">
                                 <div className="search_parent position-relative">
                                     <div className="d-flex align-items-center">
                                         <i className="bi bi-search"></i>
@@ -212,27 +244,117 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="d-flex d-lg-none align-items-center me-3">
+                                <div className="d-flex align-items-center">
+                                    <i className="bi bi-search text-black d-flex align-items-center"></i>
+                                </div>
+                            </div>
+                            {/* DESKTOP */}
+                            <div className="d-flex align-items-center gap-2">
 
-                            {/* DESKTOP LOGIN / SIGNUP */}
-                            <div className="d-lg-flex d-none gap-2 align-items-center">
-                                <Link to="/login" className="btn_login">Login</Link>
-                                <Link to="/signup" className="btn_signup">Sign Up</Link>
+                                {!user ? (
+                                    <>
+                                        <Link to="/login" className="btn_login">Login</Link>
+                                        <Link to="/signup" className="btn_signup d-lg-flex d-none">Sign Up</Link>
+                                    </>
+                                ) : (
+                                    <div className="user-dropdown position-relative" ref={dropdownRef}>
+
+                                        {/* AVATAR ICON */}
+                                        <div
+                                            className={`avatar-icon ${dropdownOpen ? "active" : ""}`}
+                                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                                        >
+                                            <img
+                                                src={`${process.env.PUBLIC_URL}/assets/images/icons/user.png`}
+                                                alt="User"
+                                            />
+                                        </div>
+                                        {/* <div
+                                            className="avatar-icon letter-avatar"
+                                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                                        >
+                                            {user?.name?.charAt(0).toUpperCase()}
+                                        </div> */}
+                                        {/* DROPDOWN */}
+                                        {dropdownOpen && (
+                                            <div className="dropdown-menu-custom">
+
+                                                {/* USER INFO */}
+                                                <div className="user-info">
+                                                    <strong>{user.name}</strong>
+                                                    <small>{user.email}</small>
+                                                </div>
+
+                                                <ul>
+                                                    <li>
+                                                        <Link to="/profile">My Profile</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/my-courses">My Courses</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/change-password">Change Password</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/faq">FAQ</Link>
+                                                    </li>
+                                                    <li className="logout" onClick={handleLogout}>
+                                                        Sign Out
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </div>
 
-                            {/* MOBILE ICONS */}
-                            <div className="d-flex d-lg-none align-items-center nav_mbl_icons">
-                                <button className="mbl_search_btn bg-transparent border-0">
-                                    <i className="bi bi-search d-flex"></i>
-                                </button>
+                            {/* MOBILE */}
+                            {/* <div className="d-flex d-lg-none align-items-center">
+                                {!user ? (
+                                    <Link to="/login" className="btn_login">Login</Link>
+                                ) : (
+                                    <div className="user-dropdown position-relative" ref={dropdownRef}>
+                                        <div
+                                            className={`avatar-icon ${dropdownOpen ? "active" : ""}`}
+                                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                                        >
+                                            <img
+                                                src={`${process.env.PUBLIC_URL}/assets/images/icons/user.png`}
+                                                alt="User"
+                                            />
+                                        </div>
+                                        {dropdownOpen && (
+                                            <div className="dropdown-menu-custom">
 
-                                <Link to="/login" className="btn_login ms-2">
-                                    Login
-                                </Link>
-                            </div>
+                                                <div className="user-info">
+                                                    <strong>{user.name}</strong>
+                                                    <small>{user.email}</small>
+                                                </div>
 
+                                                <ul>
+                                                    <li>
+                                                        <Link to="/profile">My Profile</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/my-courses">My Courses</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/change-password">Change Password</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/faq">FAQ</Link>
+                                                    </li>
+                                                    <li className="logout" onClick={handleLogout}>
+                                                        Sign Out
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div> */}
                         </div>
-
-
                     </div>
                 </div>
             </div>
